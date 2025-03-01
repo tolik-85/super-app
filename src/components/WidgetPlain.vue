@@ -1,10 +1,5 @@
 <script>
-// import ItemVehicle from './ItemVehicle.vue'
-import isNumber from 'isnumber'
-
 export default {
-  // components: { ItemVehicle },
-
   props: ['vehicleType'],
 
   data() {
@@ -12,23 +7,23 @@ export default {
       vehicles: [],
       // vehicle: { brand: brand, price: price, hasTurbo: turbo },
       brand: '',
-      price: 0,
-      turbo: 'Нет',
+      flyDist: '1000 miles',
+      plainLength: '100 meters',
     }
   },
 
   methods: {
     addVehicle() {
-      if (this.brand === '' || this.price === '') return
+      if (this.brand === '') return
       const vehicle = {
         brand: this.brand,
-        price: this.price,
-        hasTurbo: this.turbo,
+        flyDist: this.flyDist,
+        plainLength: this.plainLength,
       }
       this.vehicles.push(vehicle)
       this.brand = ''
-      this.price = 0
-      this.turbo = 'Нет'
+      this.flyDist = '1000 miles'
+      this.plainLength = '100 meters'
     },
     removeVehicle(event) {
       const id = event.target.parentNode.id
@@ -40,20 +35,25 @@ export default {
 
 <template>
   <div class="wrapper">
-    <h1>{{ vehicleType }}s</h1>
+    <h1>{{ vehicleType }}es</h1>
     <div class="field-wrap">
       <label for="brand">Введите бренд</label>
       <input v-model="this.brand" class="input" placeholder="Введите бренд" />
     </div>
     <div class="field-wrap">
-      <label for="price">Введите цену</label>
-      <input v-model.number="this.price" class="input" />
+      <label for="flyDist">Введите дальность полета</label>
+      <select v-model="this.flyDist" name="flyDist" id="flyDist">
+        <option value="1000 miles" selected>1000 miles</option>
+        <option value="2000 miles">2000 miles</option>
+        <option value="3000 miles">3000 miles</option>
+      </select>
     </div>
     <div class="field-wrap">
-      <label for="turbo">Наличие турбо</label>
-      <select v-model="this.turbo" name="turbo" id="turbo">
-        <option value="Да" selected>Да</option>
-        <option value="Нет">Нет</option>
+      <label for="plainLength">Введите длину самолета</label>
+      <select v-model="this.plainLength" name="plainLength" id="plainLength">
+        <option value="100 meters">100 meters</option>
+        <option value="200 meters">200 meters</option>
+        <option value="300 meters">300 meters</option>
       </select>
     </div>
     <!-- <input
@@ -71,8 +71,8 @@ export default {
         :id="idx"
       >
         Бренд: {{ vehicle.brand }}<br />
-        Цена: {{ vehicle.price }}<br />
-        Турбо: {{ vehicle.hasTurbo }}<br />
+        Дальность полета: {{ vehicle.flyDist }}<br />
+        Длина самолета: {{ vehicle.plainLength }}<br />
         <button @click="removeVehicle" class="delete">Delete</button>
       </li>
     </ul>
@@ -84,11 +84,7 @@ h1 {
 }
 .wrapper {
   text-align: center;
-  background: linear-gradient(
-    52deg,
-    rgba(224, 255, 0, 1) 0%,
-    rgba(33, 61, 243, 1) 93%
-  );
+  background: -webkit-linear-gradient(180deg, #0f0055, #4b3cff, #b4c3ff);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -105,7 +101,6 @@ ul {
   width: 100%;
 }
 .add-btn {
-  margin-right: 20px;
   font-size: 18px;
   color: white;
   background: rgb(31, 199, 143);
@@ -123,13 +118,11 @@ option {
 .list-item {
   font-size: 24px;
   list-style: none;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   background: transparent;
   width: 100%;
   padding: 10px 0;
   border-top: 3px solid #fff;
-  /* border-bottom: 3px solid #fff;
-  margin-bottom: 5px; */
 }
 label {
   display: block;

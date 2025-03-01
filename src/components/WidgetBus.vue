@@ -1,10 +1,5 @@
 <script>
-// import ItemVehicle from './ItemVehicle.vue'
-import isNumber from 'isnumber'
-
 export default {
-  // components: { ItemVehicle },
-
   props: ['vehicleType'],
 
   data() {
@@ -13,7 +8,8 @@ export default {
       // vehicle: { brand: brand, price: price, hasTurbo: turbo },
       brand: '',
       price: 0,
-      turbo: 'Нет',
+      passengersQty: '10 - 20',
+      fuelType: 'Diesel',
     }
   },
 
@@ -23,12 +19,14 @@ export default {
       const vehicle = {
         brand: this.brand,
         price: this.price,
-        hasTurbo: this.turbo,
+        passengersQty: this.passengersQty,
+        fuelType: this.fuelType,
       }
       this.vehicles.push(vehicle)
       this.brand = ''
       this.price = 0
-      this.turbo = 'Нет'
+      this.passengersQty = '10 - 20'
+      this.fuelType = 'Diesel'
     },
     removeVehicle(event) {
       const id = event.target.parentNode.id
@@ -40,7 +38,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <h1>{{ vehicleType }}s</h1>
+    <h1>{{ vehicleType }}es</h1>
     <div class="field-wrap">
       <label for="brand">Введите бренд</label>
       <input v-model="this.brand" class="input" placeholder="Введите бренд" />
@@ -50,10 +48,23 @@ export default {
       <input v-model.number="this.price" class="input" />
     </div>
     <div class="field-wrap">
-      <label for="turbo">Наличие турбо</label>
-      <select v-model="this.turbo" name="turbo" id="turbo">
-        <option value="Да" selected>Да</option>
-        <option value="Нет">Нет</option>
+      <label for="passengersQty">Введите колличество пассажиров</label>
+      <select
+        v-model="this.passengersQty"
+        name="passengersQty"
+        id="passengersQty"
+      >
+        <option value="10 - 20" selected>10 - 20</option>
+        <option value="21 - 30">21 - 30</option>
+        <option value="31 - 40">31 - 40</option>
+      </select>
+    </div>
+    <div class="field-wrap">
+      <label for="fuelType">Введите тип топлива</label>
+      <select v-model="this.fuelType" name="fuelType" id="fuelType">
+        <option value="Diesel">Diesel</option>
+        <option value="Gasoline">Gasoline</option>
+        <option value="Gas">Gas</option>
       </select>
     </div>
     <!-- <input
@@ -72,7 +83,8 @@ export default {
       >
         Бренд: {{ vehicle.brand }}<br />
         Цена: {{ vehicle.price }}<br />
-        Турбо: {{ vehicle.hasTurbo }}<br />
+        Колличество пассажиров: {{ vehicle.passengersQty }}<br />
+        Тип топлива: {{ vehicle.fuelType }}<br />
         <button @click="removeVehicle" class="delete">Delete</button>
       </li>
     </ul>
@@ -84,11 +96,7 @@ h1 {
 }
 .wrapper {
   text-align: center;
-  background: linear-gradient(
-    52deg,
-    rgba(224, 255, 0, 1) 0%,
-    rgba(33, 61, 243, 1) 93%
-  );
+  background: -webkit-linear-gradient(90deg, #ccbcd3, #806692, #60067e);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -105,7 +113,6 @@ ul {
   width: 100%;
 }
 .add-btn {
-  margin-right: 20px;
   font-size: 18px;
   color: white;
   background: rgb(31, 199, 143);

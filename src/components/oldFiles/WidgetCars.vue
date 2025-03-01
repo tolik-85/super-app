@@ -24,9 +24,9 @@ export default {
 <template>
   <div>
     <h1>Cars</h1>
-    <button @click="addCar">Add Car</button>
-    <input v-model="car" />
-    <ul>
+    <button @click="addCar" class="add-car">Add Car</button>
+    <input v-model="car" class="input" />
+    <ul class="list">
       <ItemCar v-for="(car, idx) of cars" :key="idx" :car="car" />
     </ul>
   </div>
