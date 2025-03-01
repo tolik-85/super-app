@@ -4,16 +4,23 @@ export default {
 
   data() {
     return {
-      car: '',
+      car: {
+        brand: '',
+        price: 0,
+        isTurbo: false,
+      },
     }
   },
 
   methods: {
     addCar() {
-      if (this.car === '') return
-      this.$emit('car-changed', this.car.trim())
-      this.car = ''
-      this.$refs.elInputCar.focus()
+      if (this.car.brand === '') return
+      this.$emit('car-changed', this.car)
+      this.car = {
+        brand: '',
+        price: 0,
+        isTurbo: false,
+      }
     },
   },
 }
@@ -21,6 +28,8 @@ export default {
 
 <template>
   <button @click="addCar">Add Car</button>
-  <input @keypress.enter="addCar" ref="elInputCar" v-model="car" />
+  <input v-model="car.brand" />
+  <input v-model="car.price" />
+  <input v-model="car.isTurbo" />
   <input @click="car = ''" type="button" value="x" />
 </template>

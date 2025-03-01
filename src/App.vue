@@ -1,14 +1,14 @@
 <script>
-import WidgetCars from './components/WidgetCars.vue'
+import WidgetCarsSuper from './components/WidgetCarsSuper.vue'
 
 export default {
-  components: { WidgetCars },
+  components: { WidgetCarsSuper },
 }
 </script>
 
 <template>
   <div class="container">
-    <WidgetCars />
+    <WidgetCarsSuper />
   </div>
 </template>
 

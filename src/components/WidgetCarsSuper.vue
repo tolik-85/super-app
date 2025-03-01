@@ -1,9 +1,9 @@
 <script>
-import ItemCar from './ItemCar.vue'
-import AdderCar from './AdderCar.vue'
+import ItemCarSuper from './ItemCarSuper.vue'
+import AdderCarSuper from './AdderCarSuper.vue'
 
 export default {
-  components: { ItemCar, AdderCar },
+  components: { ItemCarSuper, AdderCarSuper },
 
   data() {
     return {
@@ -19,10 +19,10 @@ export default {
   <div>
     <h1>Cars</h1>
 
-    <AdderCar @car-changed="cars.push($event)" />
+    <AdderCarSuper @car-changed="cars.push($event)" />
 
     <ul class="list">
-      <ItemCar v-for="(car, idx) of cars" :key="idx" :car="car" />
+      <ItemCarSuper v-for="(car, idx) of cars" :key="idx" :car="car" />
     </ul>
   </div>
 </template>
