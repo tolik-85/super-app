@@ -1,31 +1,26 @@
 <script>
 import ItemCar from './ItemCar.vue'
+import AdderCar from './AdderCar.vue'
 
 export default {
-  components: { ItemCar },
+  components: { ItemCar, AdderCar },
 
   data() {
     return {
       cars: ['Mersedes', 'Audi'],
-      car: '',
     }
   },
 
-  methods: {
-    addCar() {
-      if (this.car === '') return
-      this.cars.push(this.car)
-      this.car = ''
-    },
-  },
+  methods: {},
 }
 </script>
 
 <template>
   <div>
     <h1>Cars</h1>
-    <button @click="addCar" class="add-car">Add Car</button>
-    <input v-model="car" class="input" />
+
+    <AdderCar @car-changed="cars.push($event)" />
+
     <ul class="list">
       <ItemCar v-for="(car, idx) of cars" :key="idx" :car="car" />
     </ul>

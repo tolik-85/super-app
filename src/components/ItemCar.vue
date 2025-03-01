@@ -10,13 +10,3 @@ export default {
     <button class="delete-btn">Delete</button>
   </div>
 </template>
-<style scoped>
-.list-item {
-  list-style: none;
-  font-size: 20px;
-}
-.delete-btn {
-  color: white;
-  background: tomato;
-}
-</style>

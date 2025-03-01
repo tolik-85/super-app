@@ -1,28 +1,16 @@
 <script>
-import WidgetBus from './components/WidgetBus.vue'
-import WidgetPlain from './components/WidgetPlain.vue'
-import WidgetVehicles from './components/WidgetVehicles.vue'
+import WidgetCars from './components/WidgetCars.vue'
 
 export default {
-  components: { WidgetVehicles, WidgetBus, WidgetPlain },
+  components: { WidgetCars },
 }
 </script>
+
 <template>
   <div class="container">
-    <WidgetVehicles vehicle-type="Car" />
-
-    <WidgetVehicles vehicle-type="Bike" />
-    <WidgetBus vehicle-type="Bus" />
-    <WidgetPlain vehicle-type="Plain" />
+    <WidgetCars />
   </div>
 </template>
-<style scoped>
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-</style>
 
 <!--
 
