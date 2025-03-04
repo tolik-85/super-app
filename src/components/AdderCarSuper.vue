@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       car: {
-        brand: '',
+        brand: null,
         price: 0,
         isTurbo: false,
       },
